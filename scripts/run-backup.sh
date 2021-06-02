@@ -11,5 +11,6 @@ DIE() {
 [ "$BACKUP_SRC" ] || DIE "missing BACKUP_SRC"
 [ "$BACKUP_DST" ] || DIE "missing BACKUP_DST"
 
-mc -C /tmp/mc alias set backup "$S3_ENDPOINT" "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
-mc -C /tmp/mc $MC_GLOBAL_OPTIONS mirror $MC_MIRROR_OPTIONS "$BACKUP_SRC" "backup/$BACKUP_DST"
+mc -C /tmp/mc $MC_GLOBAL_FLAGS alias set \
+	backup "$S3_ENDPOINT" "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
+mc -C /tmp/mc $MC_GLOBAL_FLAGS mirror $MC_MIRROR_FLAGS "$BACKUP_SRC" "backup/$BACKUP_DST"
