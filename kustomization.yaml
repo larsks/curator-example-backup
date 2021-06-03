@@ -12,8 +12,10 @@ configMapGenerator:
     files:
       - scripts/run-backup.sh
   - name: backup-config
-    env: config.env
+    envs:
+      - config.env
 
 secretGenerator:
   - name: backup-credentials
-    env: credentials.env
+    envs:
+      - credentials.env

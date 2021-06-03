@@ -1,26 +1,16 @@
 # Backup a directory to an S3 bucket
 
-## Overview
-
 This collection of manifests will deploy a [CronJob][] that
 periodically runs a pod that backs up up a local (to the pod) directory
-to an S3 bucket.
-
-We use `mc` (the [MinIO Client][]) to interface with the remote S3 endpoint.
-We're using `mc` rather than, say, [s3cmd][] because:
-
-- `mc` is easy to configure
-- MinIO maintains a [docker image][] that we can use without any modification.
+to an S3 bucket using the [MinIO Client][] (`mc`).
 
 [minio client]: https://docs.min.io/docs/minio-client-complete-guide.html
 [CronJob]: https://docs.openshift.com/container-platform/4.7/rest_api/workloads_apis/cronjob-batch-v1beta1.html
-[docker image]: https://hub.docker.com/r/minio/mc/
-[s3cmd]: https://s3tools.org/s3cmd
 
 ## Configuration
 
 1. Copy `credentials-example.env` to `credentials.env`
-   and update it with your AWS key id and secret.
+   and update it with your bucket credentials. 
 
 2. Update `config.env`. The following configuration variables are
    required:
@@ -58,3 +48,6 @@ We're using `mc` rather than, say, [s3cmd][] because:
 
 **WARNING** Make sure you don't add `credentials.env` to a Git
 repository and accidentally expose your credentials.
+
+[docker image]: https://hub.docker.com/r/minio/mc/
+[s3cmd]: https://s3tools.org/s3cmd
